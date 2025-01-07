@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic AI News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/2.51.6/full.min.css" rel="stylesheet">
+    <style>
+      * {
+          font-family: 'Noto Sans KR', sans-serif;
+      }
+  </style>
+</head>
+<body>
+    <div class="drawer">
+        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+            <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
+                <div class="flex-none">
+                    <label for="my-drawer" class="btn btn-square btn-ghost drawer-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </label>
+                </div>
+                <div class="flex-1">
+                    <a class="btn btn-ghost normal-case text-xl">📰 Magic - 따끈한 AI 뉴스</a>
+                </div>
+                <div class="flex-none gap-2" style="margin-right: 10px;">
+                    <div class="form-control">
+                        <input type="text" id="search" placeholder="Search" class="input input-bordered w-24 md:w-auto" onkeyup="search()"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <h2 class=""><b style="font-size: 2rem;">오늘의 늬우스</b></h2>
+                <div id="newsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style="margin: 10px 0;">
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-side">
+            <label for="my-drawer" class="drawer-overlay"></label>
+            <ul class="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                <li><a href="https://kt-timeline.netlify.app/">타임라인</a></li>
+                <li><a href="https://kt-room.netlify.app/">회의실 예약</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content" style="position: sticky; bottom: 0px;">
+        <div>
+            <p>Copyright © 2024 seewan.park@kt.com - All rights reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        let newData = []
+        let interval = null
+
+        function search () {
+          input = document.getElementById('search');
+          input_value = input.value.toUpperCase();
+          console.log('Search ', input_value)
+
+          const tempData = newData.filter((value) => {
+            return JSON.stringify(value).indexOf(input_value) != -1 
+          })
+
+          renderNews(tempData)
+        }
+
+        async function fetchData() {
+            return await fetch('https://raw.githubusercontent.com/kingsae1/ai-news/refs/heads/main/today.json').then(async res => {
+                const result = await res.json()
+                return result
+            })
+            // return [{'title': 'GN⁺: AI에게 시니어 개발자처럼 코드를 읽도록 가르치다 ', 'link': 'https://nmn.gl/blog/ai-senior-developer', 'info': 'AI 코드 분석의 새로운 접근 방식이 소개되었다. 주니어 개발자처럼 라인 단위로 분석하는 방식 대신, AI에게 전체 시스템을 이해하도록 하여 기능별로 파일을 그룹화하고 맥락 정보를 제공한 결과, AI가 보다 깊이 있는 통찰력을 제공하게 되었다. 이는 단순한 코드 수정이 아닌, 시스템의 성능이나 구조 개선에 대한 인사이트를 포착하도록 했다. 앞으로는 AI가 기술 부채 감지 및 아키텍처 개선안을 제안하는 능력을 가르치는 방향으로 나아갈 예정이다.', 'image': '', 'date': '14시간전'}, {'title': '생성형 모델의 현황', 'link': 'https://nrehiew.github.io/blog/2024/', 'info': '2024년에는 텍스트 및 이미지 생성 분야에서 여러 연구소가 경쟁하며 큰 발전을 이루었다. OpenAI의 독주에서 벗어나 Anthropic, DeepSeek, Qwen 등 다양한 기관이 연구를 확대하고 있다. 대규모 언어 모델(LLM) 및 이미지 생성 기술이 발전하고 있으며, 특히 멀티모달 연구와 AI 에이전트의 자동화 가능성이 주목받고 있다. 2025년에는 더욱 혁신적인 변화가 기대된다.', 'image': '', 'date': '13시간전'}, {'title': '2025년의 AI: AI의 기초가 완성되는 해', 'link': 'https://www.sequoiacap.com/article/ai-in-2025/', 'info': '세콰이어 캐피탈은 2024년을 AI의 초기 발전 단계로 전망하며, 2025년에는 AI 아이디어를 구체화하고 실현하는 해가 될 것이라고 예상했다. 경쟁 중인 주요 LLM 기업들은 각기 다른 차별화 전략(예: Google의 수직 통합, OpenAI의 브랜드, Anthropic의 인재 확보 등)을 통해 AI 검색 및 애플리케이션 개발에 나서고 있다. 2025년에는 AI 컴퓨팅 비용이 감소하고, 데이터 센터의 용량 증가로 스타트업에게 기회가 생길 것으로 보인다. AI 기술을 활용한 새로운 혁신이 기대된다.', 'image': 'https://www.sequoiacap.com/wp-content/uploads/sites/6/2024/12/AI-in-2025-Opengraph.jpg', 'date': '12시간전'}, {'title': 'GN⁺: 모바일 앱에서 AI 모델 추출하기 ', 'link': 'https://altayakkus.substack.com/p/you-wouldnt-download-an-ai', 'info': '많은 앱들이 AI 모델을 기기에 직접 통합하여 빠른 추론과 오프라인 접근을 가능하게 하고 있지만, 이로 인해 사용자들이 모델 파일을 추출하고 분석할 수 있는 우려가 있다. Microsoft의 Seeing AI 앱은 화폐 인식 기능을 제공하며, 앱 내부에 암호화된 모델 파일이 포함되어 있다. 그러나 해당 파일은 역공학 및 도구를 사용해 복호화될 수 있으며, 이를 통해 저작권 문제를 고려해야 한다.', 'image': 'https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F304c263a-60cc-4171-81cc-3b4dd44f9540_1920x1080.jpeg', 'date': '14시간전'}, {'title': '2025년 AI 예측', 'link': 'https://every.to/context-window/what-ai-looks-like-in-2025', 'info': '향후 AI 발전에서는 산업 전반에 걸쳐 AI 역량이 향상되고, 구체적인 문제를 해결하는 특화 AI 에이전트가 등장할 것으로 예상된다. AI는 개인과 소규모 팀이 더 큰 영향을 미칠 수 있도록 돕고, 헬스케어 분야에서는 약물 발견 및 질병 예방 등에서 중요한 발전을 이룰 것으로 보인다. 그러나 AI 기술의 발전보다 사회적 격차와 현실 문제의 적용이 더 큰 도전이 될 것이며, 2025년에는 이러한 격차가 확대될 전망이다.', 'image': 'https://d24ovhgu8s7341.cloudfront.net/uploads/post/social_media_image/3387/Frame_9150.png', 'date': '13시간전'}] 
+        }
+
+        // 발행된 시간을 설정하는 함수
+        function parsePublishedTime(text) {
+            const now = new Date();
+            const timeValue = parseInt(text.match(/\d+/)[0], 10); // 숫자 추출
+            const timeUnit = text.includes("시간") ? "hours" : text.includes("일") ? "days" : null;
+
+            if (timeUnit === "hours") {
+                now.setHours(now.getHours() - timeValue); // 시간 차감
+            } else if (timeUnit === "days") {
+                now.setDate(now.getDate() - timeValue); // 날짜 차감
+            } else {
+                throw new Error("Invalid time format. Supported formats: '11시간 전', '3일 전'");
+            }
+
+            return now;
+        }
+
+        // 현재 시간과 발행된 시간 차이를 계산해 텍스트로 변환
+        function getElapsedTimeText(publishedDate) {
+            const now = new Date();
+            const diffMs = now - publishedDate; // 시간 차이 (밀리초)
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHours = Math.floor(diffMin / 60);
+            const diffDays = Math.floor(diffHours / 24);
+
+            if (diffDays > 0) {
+                return `${diffDays}일 전`;
+            } else if (diffHours > 0) {
+                return `${diffHours}시간 전`;
+            } else if (diffMin > 0) {
+                return `${diffMin}분 전`;
+            } else {
+                return `${diffSec}초 전`;
+            }
+        }
+
+        // 발행된 시간 텍스트 업데이트
+        function updateElapsedTime(release_date) {
+            const publishedDate = parsePublishedTime(release_date)
+            const elapsedText = getElapsedTimeText(publishedDate);
+            const now = new Date();
+            const diffMs = now - publishedDate; // 밀리초 차이
+
+            // HTML 요소 업데이트
+            // document.getElementById("published-time").textContent = publishedDate.toLocaleString();
+            // document.getElementById("elapsed-time").textContent = `${elapsedText} (경과 시간: ${Math.floor(diffMs / 1000)}초)`;
+            return elapsedText
+        }
+
+
+        async function renderNews(data) {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = ''
+
+            data.forEach(news => {
+                const card = document.createElement('div');
+                card.className = 'card bg-base-100 shadow-xl';
+                
+                const imageUrl = news.image || './news-default-big.png';
+                const title = news.title.replace('GN⁺:','')
+                
+                card.innerHTML = `
+                    <figure class="h-48">
+                        <img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover" />
+                    </figure>
+                    <div class="card-body">
+                        <h2 class="card-title line-clamp-2">${title}</h2>
+                        <p class="line-clamp-3 text-sm">${news.info}</p>
+                        <div class="card-actions justify-between items-center mt-4">
+                            <div class="release-date text-sm text-gray-500">${updateElapsedTime(news.date)}</div>
+                            <a href="${news.link}" target="_blank" class="btn btn-primary btn-sm">자세히</a>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+
+            clearInterval(interval)
+            interval = setInterval(() => {
+                console.log('## Update Date ##')
+                const eles = document.getElementsByClassName('release-date')
+                data.forEach((news, index) => {
+                    eles.item(index).textContent = updateElapsedTime(news.date)
+                })
+            }, 60 * 60 * 1000)
+        }
+
+        (async() => {
+          newData = await fetchData()
+          renderNews(newData);
+        })()
+        
+    </script>
+</body>
+</html>
