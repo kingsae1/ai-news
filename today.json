@@ -1,0 +1,37 @@
+[
+    {
+        "title": "GN⁺: AI에게 시니어 개발자처럼 코드를 읽도록 가르치다 ",
+        "link": "https://nmn.gl/blog/ai-senior-developer",
+        "info": "AI가 React 코드 분석에서 주니어 개발자처럼 라인 단위로 접근해 실패하는 문제를 발견하고, 이를 해결하기 위해 시니어 개발자 방식으로 파일을 기능별로 그룹화하고 맥락 정보를 제공하는 실험을 진행했다. 이 방법을 통해 AI는 코드의 시스템적 영향과 복잡한 인사이트를 제시하게 되었으며, AI의 깊이 있는 코드 이해 증진이 중요하다는 결론에 이르렀다. 향후 AI가 기술 부채 탐지 및 아키텍처 개선 제안 능력을 갖출 수 있도록 발전시키는 방향을 모색하고 있다.",
+        "image": "",
+        "date": "15시간전"
+    },
+    {
+        "title": "생성형 모델의 현황",
+        "link": "https://nrehiew.github.io/blog/2024/",
+        "info": "2024년 AI 분야에서는 텍스트 및 이미지 생성에서 큰 발전이 이루어졌으며, OpenAI 외에도 Anthropic, DeepSeek와 같은 다양한 연구소가 경쟁하고 있다. 대규모 언어 모델(LLM)이 핵심 연구 주제로 자리잡았고, 모델의 성능과 새로운 아키텍처가 주목받고 있다. 이미지 생성에서도 중소 연구소의 혁신이 빠르게 진행되고 있으며, 멀티모달 연구가 활성화되고 있다. 2025년에는 더욱 급속한 발전이 예상된다.",
+        "image": "",
+        "date": "14시간전"
+    },
+    {
+        "title": "2025년의 AI: AI의 기초가 완성되는 해",
+        "link": "https://www.sequoiacap.com/article/ai-in-2025/",
+        "info": "세콰이어 캐피탈은 2024년을 AI의 \"원시 수프\" 단계로, 2025년에는 아이디어 선별과 구현의 해로 전망하고 있다. 주요 AI 플레이어들은 LLM 품질 경쟁에서 차별화 전략을 모색中이며, 특히 Google, OpenAI, Anthropic 등은 각각 독특한 강점을 가지고 있다. AI 검색이 2025년 주요 애플리케이션으로 부상할 가능성이 있으며, 이는 전문화된 분야에서의 생산성을 크게 향상시킬 것으로 예상된다. 마지막으로, 2025년에는 AI 관련 자본 지출이 안정화되고 데이터 센터 용량이 증가해 AI 컴퓨팅 비용이 절감될 것으로 보인다.",
+        "image": "https://www.sequoiacap.com/wp-content/uploads/sites/6/2024/12/AI-in-2025-Opengraph.jpg",
+        "date": "13시간전"
+    },
+    {
+        "title": "GN⁺: 모바일 앱에서 AI 모델 추출하기 ",
+        "link": "https://altayakkus.substack.com/p/you-wouldnt-download-an-ai",
+        "info": "많은 모바일 앱이 AI 모델을 기기에 통합하여 오프라인 접근성을 제공하고 있지만, 이는 사용자가 모델 파일을 추출하고 분석할 수 있는 위험을 내포하고 있다. Microsoft의 Seeing AI 앱은 화폐 인식 기능이 포함된 시각 장애인을 위한 도구로, 암호화된 모델 파일이 APK 파일 내에 저장되어 있다. 연구자들은 이러한 파일을 복호화하고 추출하는 방법을 찾아내며, 이는 관련 법규를 준수해야 한다.",
+        "image": "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F304c263a-60cc-4171-81cc-3b4dd44f9540_1920x1080.jpeg",
+        "date": "14시간전"
+    },
+    {
+        "title": "2025년 AI 예측",
+        "link": "https://every.to/context-window/what-ai-looks-like-in-2025",
+        "info": "2025년까지 AI는 향상된 역량과 특화 에이전트의 부상을 통해 다양한 산업에 큰 영향을 미칠 것으로 예상된다. 헬스케어 분야에서는 AI로 인한 혁신이 가속화되며, 오픈소스와 독점 모델 간의 경쟁이 치열해질 것이다. 그러나 AI의 성공적인 도입은 기술적 요소뿐만 아니라 문제 해결 능력에 달려 있으며, 기술 격차는 사회적 문제로 부각될 전망이다.",
+        "image": "https://d24ovhgu8s7341.cloudfront.net/uploads/post/social_media_image/3387/Frame_9150.png",
+        "date": "13시간전"
+    }
+]
